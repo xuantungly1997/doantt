@@ -1,0 +1,133 @@
+.main-left{
+	width:225px;
+	ul{
+		list-style-type:none;
+		li{
+			border-bottom:1px dotted #dddddd;
+			padding:15px 0;
+			&:first-child{
+				padding-top:0;	
+			}
+			.desc{
+				font-size:13px;
+				margin-bottom: 3px;
+				color:#74747a;
+				text-overflow: ellipsis;
+			    overflow: hidden;
+			    -webkit-line-clamp: 5;
+			    display: -webkit-box;
+			    -webkit-box-orient: vertical;
+			}
+			.read-more{
+				text-decoration: none;
+				font-size:12px;
+				font-style: italic;
+				&:after{
+					content: '->';
+					color:#007bff;
+
+				}
+			}
+			.sale-off{
+				border:1px solid #e6e7e7;
+				padding:30px 0;
+				background-color:#f9f7f8;
+				.h-title{
+					text-align:center;
+					color:#fc6c6b;
+					font-weight:bold;
+					font-size: 28px;
+				}
+				.p-desc{
+					font-size:18px;
+					color:#fc6c6b;
+					text-align:center;
+					margin-bottom: 0;
+				}
+
+			}
+			// ======
+			.about{
+				&-title{
+					font-size:25px;
+				}
+				
+			}		
+			.new{
+				&-title{
+					font-size:25px;
+				}
+				&-infor{
+					&__title{
+						margin-bottom: 5px;
+						font-weight:bold;
+						text-overflow: ellipsis;
+					    overflow: hidden;
+					    -webkit-line-clamp: 3;
+					    display: -webkit-box;
+					    -webkit-box-orient: vertical;
+					}
+					&__img{
+						img{
+							width:100%;
+						}
+					}
+				}
+			}
+			// ====
+			.menusm{
+				&-title{
+					font-size:25px;
+				}
+				&-ct{
+					.li-pro{
+						padding-left:15px!important;
+						position:relative;
+						a{
+							color:#333;
+							text-decoration: none;
+							&:hover{
+								color:#0da9ef;
+							}
+						}
+						&:before{
+							display: block;
+						    position: absolute;
+						    top: 12px;
+						    left: 0;
+						    width: 0;
+						    height: 0;
+						    -webkit-transform: rotate(-90deg);
+						    transform: rotate(-90deg);
+						    -webkit-transition: -webkit-transform .35s;
+						    transition: transform .35s;
+						    border-top: 4px dashed;
+						    border-right: 4px solid transparent;
+						    border-left: 4px solid transparent;
+						    content: '';
+						    color: #9da9b9;
+						}
+					}
+					li{
+						border-bottom:none;
+						padding:0!important;
+						.cate{
+							display:none;
+							li{
+								padding-left:10px!important;
+								a{
+									font-size:12px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+@media screen and(max-width:768px){
+	.main-left{
+		display:none;
+	}
+}

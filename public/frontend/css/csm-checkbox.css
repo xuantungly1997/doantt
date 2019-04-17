@@ -1,0 +1,64 @@
+.custom__check {
+  /* The container */
+  /* Hide the browser's default checkbox */
+  /* Create a custom checkbox */
+  /* On mouse-over, add a grey background color */
+  /* When the checkbox is checked, add a blue background */
+  /* Create the checkmark/indicator (hidden when not checked) */
+  /* Show the checkmark when checked */
+  /* Style the checkmark/indicator */
+}
+.custom__check-df {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+  margin-right: 20px;
+  margin-bottom: 0;
+  cursor: pointer;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.custom__check-df input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.custom__check .checkmark {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background-color: #fff;
+  border: 1px solid #dddddd;
+}
+.custom__check-df:hover input ~ .checkmark {
+  background-color: #fff;
+}
+.custom__check-df input:checked ~ .checkmark {
+  background-color: #fff;
+}
+.custom__check .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.custom__check-df input:checked ~ .checkmark:after {
+  display: block;
+}
+.custom__check-df .checkmark:after {
+  left: 4px;
+  top: 0px;
+  width: 7px;
+  height: 12px;
+  border: solid #23d4e5;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(40deg);
+  -ms-transform: rotate(40deg);
+  transform: rotate(40deg);
+}
