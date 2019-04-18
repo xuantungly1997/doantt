@@ -103,7 +103,7 @@ Route::group(['namespace'=>'Admin'],function(){
             Route::get('/doanhthu','StatisticalController@getRevenue')->name('revenue');
 
             Route::get('thongke','StatisticalController@getIndex')->name('thongke');
-            Route::get('loc/{start}/{end}/{type}','StatisticalController@filters')->name('filters');
+            Route::get('loc','StatisticalController@filters')->name('filters');
         });
         ///show order
         Route::get('order','OrderController@getOrder')->name('getadminorder');

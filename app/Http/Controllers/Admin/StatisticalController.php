@@ -82,53 +82,41 @@ class StatisticalController extends Controller
         return view('admin.statistical.indexSta');
     }
 
-    public function filters($start,$end,$tp)
-    {   $type=$tp;
-        dd($type);
-        if($start=='' || $end=='')
+   public function filters(Request $request){
+       $date = '' ;
+       $sumtotal1 =0;
+        if(isset($request->date_start) && isset($request->date_end)) {
+            $datestart = $request->date_start;
+            $dateend =  $request->date_end;
+            $sumtotal = Order::where([
+                ['status',1],
+                ['date_order','>=',$datestart],
+                ['date_order','<=',$dateend],
+            ])->sum('total');
+            $sumtotal1=number_format("$sumtotal");
+            $dataMoney = [
+                [
+                    "name"=>"doanh thu ngày",
+                    "y"=>(double)$sumtotal
+                ],
+            ];
+        }
+        else
         {
-            $start=date('Y/m/d');
-            $end = date('Y/m/d');
-        }else{
-            $start=date('Y/m/d', strtotime($start));
-            $end = date('Y/m/d', strtotime($end));
-        }
-        switch ($type) {
-            case 1:
-                $count = Product::whereBetween('created',[$start,$end])->count();
-                $products = Product::whereBetween('created',[$start,$end])->paginate(8);
-                return view('admin.statistical.locdetail',compact('products','count','type'));
-                break;
-            case 2:
-                $idpd = OrderDetail::select('product_id')->join('order', 'order.id', '=', 'orderdetail.order_id')->where('order.status','=',1)->get();
-                $id =array();
-                foreach ($idpd as $value) {
-                    array_push($id, $value->product_id);
-                }
+            $date = (Carbon::now())->format('Y-m-d');
+            $sumtotal = Order::where([
+                ['status',1],
+                ['date_order','=',$date],
+            ])->sum('total');
+            $sumtotal1=number_format("$sumtotal");
+            $dataMoney = [
+                [
+                    "name"=>"doanh thu ngày",
+                    "y"=>(double)$sumtotal
+                ],
+            ];
 
-                $count = Product::whereIn('id',$id)->count();
-                $products =Product::whereIn('id',$id)->paginate(8);
-                return view('admin.statistical.locdetail',compact('products','type','count'));
-                break;
-
-            case 3:
-                $orders = Order::where('status','=',0)->paginate(8);
-                $count = Order::where('status','=',0)->count();
-                return view('admin.statistical.od',compact('orders','type','count'));
-                break;
-            case 4:
-                $orders = Order::where('status','=',1)->paginate(8);
-                $count = Order::where('status','=',1)->count();
-                return view('admin.statistical.od',compact('orders','type','count'));
-                break;
-            case 5:
-                $orders = Order::where('status','=',2)->paginate(8);
-                $count = Order::where('status','=',2)->count();
-                return view('admin.statistical.od',compact('orders','type','count'));
-                break;
-            default:
-                # code...
-                break;
         }
-    }
+        return view('admin.statistical.locdetail',['sumtotal'=>json_encode($dataMoney), 'date' => $date,'total'=>$sumtotal1]);
+   }
 }

@@ -154,7 +154,7 @@
                             <a href="{{route('statistical')}}">Hóa đơn</a>
                         </li>
                         <li>
-                            <a href="{{route('revenue')}}">Doanh thu</a>
+                            <a href="{{route('filters')}}">Doanh thu</a>
                         </li>
                     </ul>
                     </li>
